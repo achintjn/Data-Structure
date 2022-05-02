@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$USER_HOME$/AchintWorkspace/INTELLIJ-Workspace/Data Structures.iml" filepath="$USER_HOME$/AchintWorkspace/INTELLIJ-Workspace/Data Structures.iml" />
+      <module fileurl="file://$USER_HOME$/AchintWorkspace/INTELLIJ-Workspace/Data-Strcutures.iml" filepath="$USER_HOME$/AchintWorkspace/INTELLIJ-Workspace/Data-Strcutures.iml" />
+      <module fileurl="file://$USER_HOME$/AchintWorkspace/INTELLIJ-Workspace/Data-Structures.iml" filepath="$USER_HOME$/AchintWorkspace/INTELLIJ-Workspace/Data-Structures.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Leetcode.iml" filepath="$PROJECT_DIR$/Leetcode.iml" />
+      <module fileurl="file://$USER_HOME$/AchintWorkspace/IJ-Spring/spring-in-5-steps/spring-in-5-steps.iml" filepath="$USER_HOME$/AchintWorkspace/IJ-Spring/spring-in-5-steps/spring-in-5-steps.iml" />
+    </modules>
+  </component>
+</project>
