@@ -3,23 +3,48 @@ public class BinarySearch704 {
 
         int left = 0;
         int right = nums.length - 1;
+        int mid = 0;
 
-        while(target!=nums[(left+right)/2] && left!=right){
-            if(target<nums[(left+right)/2])
-                right = (left+right)/2;
+        while(left<=right){
+            mid = (left+right)/2;
+            if(target==nums[mid])
+                return mid;
+            else if(target>nums[mid])
+                left = mid+1;
             else
-                left = (left+right)/2;
+                right = mid-1;
         }
 
-        if(target==nums[(right+left)/2])
-            return (right+left)/2;
-        else
-            return -1;
+        return -1;
+
+
+    }
+
+    public static int search2(int[] nums, int target) {
+
+        int first = 0;
+        int last = nums.length - 1;
+        int mid;
+
+        while(first<=last){
+            //mid=(last - first + 1) / 2;
+            mid = first + (last-first) / 2;
+            if(target == nums[mid])
+                return mid;
+            else if(target > nums[mid])
+                first = mid+1;
+            else
+                last = mid-1;
+        }
+
+        return -1;
+
+
     }
 
     public static void main(String[] args) {
-        int[] inp = {-1,0,3,5,9,12};
+        int[] inp = {5};
 
-        System.out.println(search(inp,9));
+        System.out.println(search2(inp,5));
     }
 }
