@@ -3,6 +3,8 @@ import java.util.Arrays;
 public class RotateArray189 {
     public static void rotate(int[] nums, int k) {
         int len = nums.length-1;
+        if(k>(len+1))
+            k = k%(len+1);
 
         reverse(nums,0,len);
         reverse(nums,0,k-1);
@@ -20,7 +22,7 @@ public class RotateArray189 {
     }
 
     public static void main(String[] args) {
-        int [] arr = {-1,-100,3,99};
+        int [] arr = {-1};
         rotate(arr,2);
         System.out.println(Arrays.toString(arr));
     }
