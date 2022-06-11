@@ -1,5 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class ContainsDuplicate1 {
 
@@ -20,8 +19,27 @@ public class ContainsDuplicate1 {
         return flag;
     }
 
-    public static void main(String[] args) {
+    public static boolean containsDuplicate2(int [] nums) {
+        //List<Integer> list = Arrays.asList(nums);
 
+        List<Integer> intList = new ArrayList<Integer>(nums.length);
+        for (int i : nums)
+        {
+            intList.add(i);
+        }
+        Set<Integer> set = new HashSet<>(intList);
+
+        if(set.size()==nums.length)
+            return false;
+        else
+            return true;
+
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {1,2,3,4};
+
+        System.out.println(containsDuplicate2(nums));
 
 
     }
