@@ -107,8 +107,45 @@ public class PermutationInString567 {
         return true;
     }
 
+    public static boolean checkInclusion2(String s1, String s2) {
+       /* int[] chars = new int[128];
+        for(int i=0;i<s1.length();i++){
+            chars[s1.charAt(i)]++;
+        }*/
+        int right = s1.length();
+        for(int i=0;i<s2.length()-s1.length()+1;i++){
+            int sec = i+right;
+            String s3 = s2.substring(i,sec);
+            if(checkPerm(s3,s1))
+                return true;
+        }
+
+        return false;
+
+    }
+
+    public static boolean checkPerm(String s,String s1){
+        int[] chars = new int[128];
+        for(int i=0;i<s1.length();i++){
+            chars[s1.charAt(i)]++;
+        }
+
+        for(int i=0;i<s.length();i++){
+            if(chars[s.charAt(i)]!=0){
+                chars[s.charAt(i)]--;
+            }
+            else
+                return false;
+        }
+        return true;
+    }
+
 
     public static void main(String[] args) {
         System.out.println(checkInclusion("adc","dcda"));
+
+        System.out.println(checkInclusion2("abcdxabcde","abcdeabcdx"));
+
+        System.out.println("achint".substring(0,6));
     }
 }
