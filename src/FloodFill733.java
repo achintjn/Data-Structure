@@ -1,6 +1,8 @@
 import java.util.Arrays;
 
 public class FloodFill733 {
+
+    //this give time limit exceeded
     public static int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
 
         int oldColor = image[sr][sc];
@@ -37,6 +39,29 @@ public class FloodFill733 {
                 }
             }
 
+    }
+
+    //below works perfectly
+
+    public int[][] floodFill2(int[][] image, int sr, int sc, int color) {
+        int oldColor = image[sr][sc];
+        if(oldColor!=color)
+            dfs(image,sr,sc,color,oldColor);
+        return image;
+    }
+    public void dfs(int[][] image, int sr, int sc, int color, int oldColor )
+    {
+        if(image[sr][sc]==oldColor){
+            image[sr][sc]=color;
+            if(sr>=1)
+                dfs(image,sr-1,sc,color,oldColor);
+            if(sc>=1)
+                dfs(image,sr,sc-1,color,oldColor);
+            if(sr<image.length-1)
+                dfs(image,sr+1,sc,color,oldColor);
+            if(sc<image[0].length-1)
+                dfs(image,sr,sc+1,color,oldColor);
+        }
     }
 
 
