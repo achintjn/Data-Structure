@@ -44,13 +44,42 @@ public class MaxAreadOfIsland695 {
         return count;
     }
 
+    public static int maxAreaOfIsland2(int[][] grid) {
+        int max = 0;
+        for(int r=0;r<grid.length;r++){
+            for(int c=0;c<grid[r].length;c++){
+                if(grid[r][c]==1){
+                    max = Math.max(dfs2(grid,r,c),max);
+                }
+            }
+        }
+        return max;
+    }
+
+    public static int dfs2(int[][] grid, int r, int c){
+        int area = 0;
+        if(grid[r][c]==1){
+            area = area +1;
+            grid[r][c]=-1;
+            if(r>=1)
+                area = area + dfs2(grid,r-1,c);
+            if(c>=1)
+                area = area + dfs2(grid,r,c-1);
+            if(r<grid.length-1)
+                area = area + dfs2(grid,r+1,c);
+            if(c<grid[0].length-1)
+                area = area + dfs2(grid,r,c+1);
+        }
+        return area;
+    }
+
     public static void main(String[] args) {
 
         //int[][] image = {{0,0,0},{0,0,0}};
 
         int [][] grid = {{0,0,1,0,0,0,0,1,0,0,0,0,0},{0,0,0,0,0,0,0,1,1,1,0,0,0},{0,1,1,0,1,0,0,0,0,0,0,0,0},{0,1,0,0,1,1,0,0,1,0,1,0,0},{0,1,0,0,1,1,0,0,1,1,1,0,0},{0,0,0,0,0,0,0,0,0,0,1,0,0},{0,0,0,0,0,0,0,1,1,1,0,0,0},{0,0,0,0,0,0,0,1,1,0,0,0,0}};
 
-        System.out.println(maxAreaOfIsland(grid));
+        System.out.println(maxAreaOfIsland2(grid));
 
     }
 }
