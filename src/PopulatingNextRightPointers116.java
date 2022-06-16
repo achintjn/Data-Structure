@@ -19,11 +19,11 @@ class Node {
         right = _right;
         next = _next;
     }
-};
+}
 
 public class PopulatingNextRightPointers116 {
 
-    public static Node connect(Node root) {
+    public static Node connect2(Node root) {
 
         List<Node> list = new LinkedList<>();
         list.add(root);
@@ -51,6 +51,19 @@ public class PopulatingNextRightPointers116 {
 
         return root;
 
+    }
+
+    //better and short solution
+    public static Node connect(Node root) {
+        if(root==null)
+            return null;
+        if(root.left!=null)
+            root.left.next=root.right;
+        if(root.right!=null && root.next!=null)
+            root.right.next = root.next.left;
+        connect(root.left);
+        connect(root.right);
+        return root;
     }
 
     public static void main(String[] args) {
