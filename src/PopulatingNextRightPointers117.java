@@ -55,6 +55,79 @@ public class PopulatingNextRightPointers117 {
 
     }
 
+    public Node connect2(Node root) {
+        if(root==null)
+            return null;
+
+        Queue<Node> queue = new LinkedList<>();
+
+        queue.add(root);
+
+        while(!queue.isEmpty()){
+            Node que = queue.poll();
+            if(que.left!=null){
+                queue.add(que.left);
+                if(que.right!=null){
+                    queue.add(que.right);
+                    que.left.next = que.right;
+                    que.right.next = getThatNode2(que);
+                }
+                else
+                    que.left.next = getThatNode2(que);
+            }
+            else if(que.right!=null){
+                que.right.next = getThatNode2(que);
+                queue.add(que.right);
+            }
+        }
+        return root;
+    }
+
+    public Node getThatNode2(Node node){
+        while(node!=null){
+            if(node.next==null)
+                return null;
+            else{
+                if(node.next.left!=null)
+                    return node.next.left;
+                else if(node.next.right!=null)
+                    return node.next.right;
+                else
+                    node = node.next;
+            }
+        }
+
+        return node;
+    }
+
+    public Node connect3(Node root) {
+
+        if(root==null)
+            return null;
+
+        Queue<Node> q = new LinkedList<>();
+
+        q.add(root);
+
+        while(q.size()>0){
+            int size = q.size();
+
+            for(int i=0; i<size;i++){
+                Node node = q.poll();
+
+                if(i<size-1)
+                    node.next = q.peek();
+
+                if(node.left!=null)
+                    q.add(node.left);
+                if(node.right!=null)
+                    q.add(node.right);
+            }
+        }
+        return root;
+    }
+
+
 
     /* In Order traversal other way
     *  Queue<TreeLinkNode> qu = new LinkedList<>();
