@@ -51,6 +51,36 @@ public class MergeTwoSortedList21 {
 
     }
 
+    public static ListNode mergeTwoLists2(ListNode list1, ListNode list2) {
+
+        ListNode thirdHead = new ListNode(-1,null);
+        ListNode third = thirdHead;
+
+        while(list1!=null && list2!=null){
+            if(list1.val<list2.val){
+                third.next = list1;
+                list1=list1.next;
+                third = third.next;
+            }
+            else
+            {
+                third.next = list2;
+                list2=list2.next;
+                third = third.next;
+            }
+        }
+
+        if(list1==null)
+            third.next=list2;
+
+        if(list2==null)
+            third.next=list1;
+
+        return thirdHead.next;
+
+
+    }
+
     public static void main(String[] args) {
         ListNode node1 = new ListNode(4,null);
         ListNode node = new ListNode(2,node1);
@@ -60,7 +90,7 @@ public class MergeTwoSortedList21 {
         ListNode node2_ = new ListNode(3,node2);
         ListNode node1_ = new ListNode(1,node2_);
 
-        ListNode head = mergeTwoLists(node_, node1_);
+        ListNode head = mergeTwoLists2(node_, node1_);
 
         while(head!=null){
             System.out.println(head.val);
