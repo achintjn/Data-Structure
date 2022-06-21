@@ -25,6 +25,20 @@ public class ReverseLinkedList206 {
         return tail;
     }
 
+    public ListNode reverseList2(ListNode head) {
+        ListNode third = new ListNode(-1,null);
+        ListNode last = third.next;
+
+        while(head!=null){
+            third.next = head;
+            head = head.next;
+            third.next.next = last;
+            last = third.next;
+        }
+
+        return third.next;
+    }
+
     public static void main(String[] args) {
 
         ListNode node1 = new ListNode(5,null);
