@@ -57,9 +57,57 @@ public class RottenOranges994 {
 
     }
 
-    public static void main(String[] args) {
-        int[][] image = {{2,1,1},{1,1,1},{0,1,2}};
+    public static int orangesRotting2(int[][] grid) {
+        int minutes = 0;
+        boolean hasOne = false;
+        Queue<int[]> q = new LinkedList<>();
+        for(int r=0;r<grid.length;r++){
+            for(int c=0;c<grid[0].length;c++){
+                if(grid[r][c]==2)
+                    q.add(new int[]{r,c});
+                else if(grid[r][c]==1)
+                    hasOne = true;
 
-        System.out.println(orangesRotting(image));
+            }
+        }
+        if( (q.isEmpty() && !hasOne) || (!q.isEmpty() && !hasOne) )
+            return 0;
+        if(q.isEmpty() && hasOne)
+            return -1;
+        int [] dir = {0,1,0,-1,0};
+
+        while(!q.isEmpty()){
+            int size = q.size();
+            minutes = minutes +1;
+            for(int j=0;j<size;j++){
+                int[] get = q.poll();
+                int row1 = get[0];
+                int col1 = get[1];
+                for(int i=0;i<4;i++){
+                    int r = row1 + dir[i];
+                    int c = col1 + dir[i+1];
+
+                    if(r<0 || r>grid.length-1 || c<0 || c>grid[0].length-1 || grid[r][c]==2 || grid[r][c]==0) continue;
+                    grid[r][c]=grid[row1][col1];
+
+                    q.add(new int[]{r,c});
+                }
+            }
+
+        }
+
+        for(int r=0;r<grid.length;r++){
+            for(int c=0;c<grid[0].length;c++){
+                if(grid[r][c]==1)
+                    return -1;
+            }
+        }
+        return minutes-1;
+    }
+
+    public static void main(String[] args) {
+        int[][] image = {{2,1,1},{1,1,0},{0,1,1}};
+
+        System.out.println(orangesRotting2(image));
     }
 }
