@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -138,6 +139,32 @@ public class PermutationInString567 {
                 return false;
         }
         return true;
+    }
+
+    public boolean checkInclusion3(String s1, String s2) {
+        char[] ch = new char[26];
+        char[] cs1 = s1.toCharArray();
+        char[] ch2 = new char[26];
+        char[] cs2 = s2.toCharArray();
+        int s1_len = s1.length();
+
+        for(int i =0;i<cs1.length;i++){
+            ch[cs1[i]-'a']++;
+        }
+
+        for(int i =0;i<cs2.length;i++){
+            ch2[cs2[i]-'a']++;
+
+            if(i>=s1_len){
+                ch2[cs2[i-s1_len]-'a']--;
+            }
+
+            if(Arrays.equals(ch,ch2))
+                return true;
+        }
+
+        return false;
+
     }
 
 
