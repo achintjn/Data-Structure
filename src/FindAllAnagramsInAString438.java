@@ -1,9 +1,7 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class FindAllAnagramsInAString438 {
+    //my solution
     public static List<Integer> findAnagrams(String s, String p) {
         char[] chr = p.toCharArray();
         int p_len = p.length();
@@ -84,6 +82,33 @@ public class FindAllAnagramsInAString438 {
         }
         return output;
     }
+
+
+    public List<Integer> findAnagrams3(String s, String p) {
+            char[] ch = new char[26];
+            char[] cs1 = p.toCharArray();
+            char[] ch2 = new char[26];
+            char[] cs2 = s.toCharArray();
+            int s1_len = p.length();
+
+            for(int i =0;i<cs1.length;i++){
+                ch[cs1[i]-'a']++;
+            }
+
+            List<Integer> output = new ArrayList();
+            for(int i =0;i<cs2.length;i++){
+                ch2[cs2[i]-'a']++;
+
+                if(i>=s1_len){
+                    ch2[cs2[i-s1_len]-'a']--;
+                }
+
+                if(Arrays.equals(ch,ch2))
+                    output.add(i - s1_len + 1);
+            }
+
+            return output;
+        }
 
     public static void main(String[] args) {
         System.out.println(findAnagrams("cbaebabacd","abc" ));
