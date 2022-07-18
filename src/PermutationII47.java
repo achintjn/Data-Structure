@@ -12,7 +12,7 @@ public class PermutationII47 {
         return list;
 
     }
-
+    //incorrect solutn
     public static void backtrack(int n, ArrayList<List<Integer>> list,ArrayList<Integer> list2, int[] nums){
         if(n==nums.length)
             list.add(new ArrayList(list2));
