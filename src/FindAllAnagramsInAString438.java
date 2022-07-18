@@ -84,10 +84,10 @@ public class FindAllAnagramsInAString438 {
     }
 
 
-    public List<Integer> findAnagrams3(String s, String p) {
-            char[] ch = new char[26];
+    public static List<Integer> findAnagrams3(String s, String p) {
+            int[] ch = new int[26];
             char[] cs1 = p.toCharArray();
-            char[] ch2 = new char[26];
+            int[] ch2 = new int[26];
             char[] cs2 = s.toCharArray();
             int s1_len = p.length();
 
@@ -111,6 +111,6 @@ public class FindAllAnagramsInAString438 {
         }
 
     public static void main(String[] args) {
-        System.out.println(findAnagrams("cbaebabacd","abc" ));
+        System.out.println(findAnagrams3("cbaebabacd","abc" ));
     }
 }
