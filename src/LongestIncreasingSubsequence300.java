@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class LongestIncreasingSubsequence300 {
 
     //top down approach using recursion
@@ -25,7 +27,23 @@ public class LongestIncreasingSubsequence300 {
         return max;
     }
 
+    //bottom up
+    public static int lengthOfLIS2(int[] nums) {
+        int[] memo = new int[nums.length];
+        int max =0;
+        Arrays.fill(memo,1);
+
+        for(int i=nums.length-1;i>=0;i--){
+            for(int j=i+1;j<nums.length;j++){
+                if(nums[i]<nums[j])
+                    memo[i]=Math.max(memo[i],1+memo[j]);
+            }
+            max=Math.max(max,memo[i]);
+        }
+        return max;
+    }
+
     public static void main(String[] args) {
-        System.out.println(lengthOfLIS(new int[]{0,1,0,3,2,3}));
+        System.out.println(lengthOfLIS2(new int[]{0,1,0,3,2,3}));
     }
 }
