@@ -36,10 +36,25 @@ public class ContainsDuplicate1 {
 
     }
 
+    public static boolean containsDuplicate3(int[] nums) {
+        List<Integer> intList = new ArrayList<Integer>(nums.length);
+        for (int i : nums)
+        {
+            intList.add(i);
+        }
+
+        Set set = new HashSet(intList);
+        System.out.println(set);
+        if(nums.length!=set.size())
+            return true;
+
+        return false;
+    }
+
     public static void main(String[] args) {
         int[] nums = {1,2,3,4};
 
-        System.out.println(containsDuplicate2(nums));
+        System.out.println(containsDuplicate3(nums));
 
 
     }
