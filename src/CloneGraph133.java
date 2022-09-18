@@ -18,7 +18,7 @@ class GraphNode {
 
 public class CloneGraph133 {
     //BFS
-    public GraphNode cloneGraph(GraphNode node) {
+    public GraphNode cloneGraph1(GraphNode node) {
         if(node==null)
             return null;
         Queue<GraphNode> que = new LinkedList<>();
@@ -42,4 +42,17 @@ public class CloneGraph133 {
     }
 
     //DFS
+    Map<GraphNode,GraphNode> map = new HashMap<>();
+    public GraphNode cloneGraph(GraphNode node) {
+        if(node==null)
+            return null;
+        if(map.containsKey(node))
+            return map.get(node);
+        map.put(node, new GraphNode(node.val, new ArrayList()));
+        for(GraphNode n:node.neighbors){
+            cloneGraph(n);
+            map.get(node).neighbors.add(map.get(n));
+        }
+        return map.get(node);
+    }
 }
