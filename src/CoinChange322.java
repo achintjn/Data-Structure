@@ -75,7 +75,30 @@ public class CoinChange322 {
         return dp[amount];
     }
 
+    public static int coinChange4(int[] coins, int amount) {
+        int[] dp = new int[amount+1];
+        return coinChange4(coins, amount, dp);
+    }
+    public static int coinChange4(int[] coins, int amount, int[] dp){
+        if(amount<0)
+            return -1;
+        if(amount==0)
+            return 0;
+        if(dp[amount]!=0)
+            return dp[amount];
+        int min = Integer.MAX_VALUE;
+        for(int i=0; i<coins.length;i++){
+            if(amount==21)
+            System.out.println(amount);
+            int res = coinChange4(coins, amount-coins[i],dp);
+            if(res<min && res>=0)
+                min = 1 + res;
+        }
+        dp[amount]=min==Integer.MAX_VALUE?-1:min;
+        return min==Integer.MAX_VALUE?-1:min;
+    }
+
     public static void main(String[] args) {
-        System.out.println(coinChange3(new int[]{186,419,83,408}, 6249));
+        System.out.println(coinChange4(new int[]{186,419,83,408}, 6249));
     }
 }
