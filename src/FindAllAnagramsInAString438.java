@@ -110,7 +110,39 @@ public class FindAllAnagramsInAString438 {
             return output;
         }
 
+    public static List<Integer> findAnagrams4(String s, String p) {
+        int start = 0;
+        int end = p.length()-1;
+        List<Integer> list = new ArrayList<>();
+        int[] p_26 = new int[26];
+        int i=0;
+        while(i<=p.length()-1){
+            p_26[p.charAt(i)-'a']++;
+            i++;
+        }
+
+        int[] s_26 = new int[26];
+        int j=0;
+        while(j<=p.length()-1){
+            s_26[s.charAt(j)-'a']++;
+            j++;
+        }
+
+        while(end<=s.length()-1){
+            String temp = s.substring(start, end);
+            if(start!=0)
+                s_26[s.charAt(end)-'a']++;
+            if(Arrays.equals(p_26,s_26))
+                list.add(start);
+
+            s_26[s.charAt(start)-'a']--;
+            start++;
+            end++;
+        }
+        return list;
+    }
+
     public static void main(String[] args) {
-        System.out.println(findAnagrams3("cbaebabacd","abc" ));
+        System.out.println(findAnagrams4("cbaebabacd","abc" ));
     }
 }
