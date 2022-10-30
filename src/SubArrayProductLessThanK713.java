@@ -44,7 +44,27 @@ public class SubArrayProductLessThanK713 {
 
     }
 
+    public static int numSubarrayProductLessThanK3(int[] nums, int k) {
+        int window = 1;
+
+        int count = 0;
+        while(window<=nums.length){
+            long prod = 1;
+            for(int i=0; i<nums.length;i++){
+                prod *= nums[i];
+
+                if(i>=window)
+                    prod /= nums[i-window];
+
+                if(i>=window-1 && prod<k)
+                    count++;
+            }
+            window++;
+        }
+        return count;
+    }
+
     public static void main(String[] args) {
-        System.out.println(numSubarrayProductLessThanK(new int[]{10,5,2,6},100));
+        System.out.println(numSubarrayProductLessThanK3(new int[]{10,9,10,4,3,8,3,3,6,2,10,10,9,3},19));
     }
 }
