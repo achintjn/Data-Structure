@@ -24,7 +24,7 @@ public class SubArrayProductLessThanK713 {
     }
 
     //my solution after seeing solution
-    public int numSubarrayProductLessThanK2(int[] nums, int k) {
+    public static int numSubarrayProductLessThanK2(int[] nums, int k) {
         if(k<=1)
             return 0;
         int right=0;
@@ -44,22 +44,23 @@ public class SubArrayProductLessThanK713 {
 
     }
 
+    //revise
     public static int numSubarrayProductLessThanK3(int[] nums, int k) {
-        int window = 1;
+        if(k<=1)
+            return 0;
+        int prod = 1;
 
         int count = 0;
-        while(window<=nums.length){
-            long prod = 1;
-            for(int i=0; i<nums.length;i++){
-                prod *= nums[i];
-
-                if(i>=window)
-                    prod /= nums[i-window];
-
-                if(i>=window-1 && prod<k)
-                    count++;
+        int right = 0;
+        int left = 0;
+        while(right<nums.length){
+            prod=prod*nums[right];
+            while(prod>=k){
+                prod=prod/nums[left];
+                left++;
             }
-            window++;
+            count = count + (right-left+1);
+            right++;
         }
         return count;
     }
