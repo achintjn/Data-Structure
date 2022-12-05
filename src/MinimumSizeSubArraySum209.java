@@ -46,6 +46,27 @@ Algorithm
         return min;
     }
 
+    //revise
+    public int minSubArrayLen2(int target, int[] nums) {
+        int sum=0;
+        int right=0;
+        int left=0;
+        int size=nums.length+1;
+        while(right<nums.length){
+            sum = sum+nums[right];
+            while(sum>=target){
+                if(right-left+1<size)
+                    size=right-left+1;
+                sum = sum-nums[left];
+                left++;
+            }
+            right++;
+        }
+        if(size==nums.length+1)
+            return 0;
+        return size;
+    }
+
     public static void main(String[] args) {
         System.out.println(minSubArrayLen(7,new int[]{2,3,1,2,4,3}));
     }
