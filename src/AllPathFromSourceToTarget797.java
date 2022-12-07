@@ -31,4 +31,28 @@ public class AllPathFromSourceToTarget797 {
     public static void main(String[] args) {
         System.out.println(allPathsSourceTarget(new int[][]{{4,3,1},{3,2,4},{3},{4},{}}));
     }
+
+    public List<List<Integer>> allPathsSourceTarget2(int[][] graph) {
+        List<List<Integer>> res = new LinkedList<>();
+        for(int i=0;i<graph[0].length;i++){
+            List<Integer> list = new LinkedList<>();
+            list.add(0);
+            dfs(0,i,graph, list, res);
+        }
+        return res;
+    }
+
+    public void dfs(int r, int c, int[][] graph, List<Integer> list, List<List<Integer>> res){
+        int val = graph[r][c];
+        list.add(val);
+        if(val==graph.length-1){
+            res.add(new LinkedList(list));
+            return;
+        }
+
+        for(int i=0;i<graph[val].length;i++){
+            dfs(val,i,graph, list, res);
+            list.remove(list.size()-1);
+        }
+    }
 }
