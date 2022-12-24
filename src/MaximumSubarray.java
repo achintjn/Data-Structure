@@ -28,10 +28,10 @@ public class MaximumSubarray {
 
         int arr[] = {-2,1,-3,4,-1,2,1,-5,4};
         int arr1[] = {4,2,-5,2,7};
-        int arr2[] = {5,-6,3,4};
+        int arr2[] = {5,4,-1,7,8};
 
         System.out.println(maxSubArray1(arr));
-        System.out.println(maxSubArray(arr2));
+        System.out.println(maxSubArray(arr));
 
     }
 }
