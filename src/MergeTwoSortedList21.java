@@ -53,32 +53,29 @@ public class MergeTwoSortedList21 {
 
     public static ListNode mergeTwoLists2(ListNode list1, ListNode list2) {
 
-        ListNode thirdHead = new ListNode(-1,null);
-        ListNode third = thirdHead;
+        ListNode head=new ListNode(-1);
+        ListNode tail = head;
+
 
         while(list1!=null && list2!=null){
-            if(list1.val<list2.val){
-                third.next = list1;
-                list1=list1.next;
-                third = third.next;
+            if(list1.val<=list2.val){
+                tail.next = list1;
+                tail = tail.next;
+                list1 = list1.next;
             }
-            else
-            {
-                third.next = list2;
-                list2=list2.next;
-                third = third.next;
+            else{
+                tail.next = list2;
+                tail = tail.next;
+                list2 = list2.next;
             }
         }
 
         if(list1==null)
-            third.next=list2;
+            tail.next = list2;
+        else
+            tail.next = list1;
 
-        if(list2==null)
-            third.next=list1;
-
-        return thirdHead.next;
-
-
+        return head.next;
     }
 
     public static void main(String[] args) {
