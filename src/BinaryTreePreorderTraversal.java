@@ -22,4 +22,15 @@ public class BinaryTreePreorderTraversal {
         }
         return list;
     }
+
+    List<Integer> list = new ArrayList<>();
+    public List<Integer> preorderTraversal2(TreeNode root) {
+        if(root!=null){
+            list.add(root.val);
+            preorderTraversal(root.left);
+            preorderTraversal(root.right);
+        }
+        return list;
+
+    }
 }
