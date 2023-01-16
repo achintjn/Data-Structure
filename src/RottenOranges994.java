@@ -110,4 +110,48 @@ public class RottenOranges994 {
 
         System.out.println(orangesRotting2(image));
     }
+
+        //fastest
+        public int orangesRotting3(int[][] grid) {
+            int time=0;
+            int[] dir = {1,0,-1,0,1};
+            Queue<int[]> que = new LinkedList<>();
+            for(int r=0;r<grid.length;r++){
+                for(int c=0;c<grid[0].length;c++){
+                    if(grid[r][c]==2)
+                        que.add(new int[]{r,c});
+                }
+            }
+            while(!que.isEmpty()){
+
+                int size = que.size();
+                for(int i=0;i<size;i++){
+                    int[] curr = que.poll();
+                    int a = curr[0];
+                    int b = curr[1];
+                    for(int j=0;j<4;j++){
+                        int _r = a+dir[j];
+                        int _c = b+dir[j+1];
+
+                        if(_r<0 || _c<0 || _c>grid[0].length-1 || _r>grid.length-1 || grid[_r][_c]!=1)
+                            continue;
+                        grid[_r][_c]=3;
+                        que.add(new int[]{_r,_c});
+                    }
+                }
+                time++;
+            }
+            if(time>0)
+                time--;
+            for(int r=0;r<grid.length;r++){
+                for(int c=0;c<grid[0].length;c++){
+                    if(grid[r][c]==1)
+                        time=-1;
+                }
+            }
+            return time;
+        }
+
+
+
 }
