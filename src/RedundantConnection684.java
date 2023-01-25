@@ -1,9 +1,10 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 public class RedundantConnection684 {
-    class Solution {
+
         Set<Integer> seen = new HashSet();
         int MAX_EDGE_VAL = 1000;
 
@@ -34,9 +35,9 @@ public class RedundantConnection684 {
             }
             return false;
         }
-    }
 
-    public int[] findRedundantConnection(int[][] edges) {
+
+    public int[] findRedundantConnection2(int[][] edges) {
         int[][] adj = new int[edges.length+1][edges.length+1];
         Set<Integer> set = new HashSet<>();
 
@@ -71,5 +72,51 @@ public class RedundantConnection684 {
             }
         }
         return false;
+    }
+
+    // disjoint set union
+    public int[] findRedundantConnection3(int[][] edges) {
+        int[] parent = new int[1001];
+        int[] rank = new int[1001];
+        Arrays.fill(rank,1);
+
+        for(int i=0;i<parent.length;i++){
+            parent[i]=i;
+        }
+
+        for(int[] curr:edges){
+            if(!union(curr[0],curr[1],rank,parent))
+                return curr;
+        }
+
+        return new int[0];
+    }
+
+    public int find(int i,int[] parent){
+        if(parent[i]==i)
+            return i;
+        return find(parent[i],parent);
+    }
+
+    public boolean union(int x, int y, int[] rank,int[] parent){
+        int xp = find(x,parent);
+        int yp = find(y,parent);
+        if(xp==yp)
+            return false;
+
+        int xr = rank[xp];
+        int yr = rank[yp];
+
+        if(xr>yr){
+            parent[yp]=xp;
+            //rank[xr] += rank[yr];
+        }else if(yr>xr){
+            parent[xp]=yp;
+            //rank[yr] += rank[xr];
+        }else if(xr==yr){
+            parent[yp]=xp;
+            rank[xr] += rank[yr];
+        }
+        return true;
     }
 }
