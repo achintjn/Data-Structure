@@ -5,10 +5,12 @@ import java.util.Set;
 
 public class RedundantConnection684 {
 
-        Set<Integer> seen = new HashSet();
-        int MAX_EDGE_VAL = 1000;
+    Set<Integer> seen = new HashSet();
 
-        public int[] findRedundantConnection(int[][] edges) {
+    int MAX_EDGE_VAL = 1000;
+
+    //O(n^2) because we have to go to every vertices once one edge is added to the graph (1+2+3+....+n)
+    public int[] findRedundantConnection(int[][] edges) {
             ArrayList<Integer>[] graph = new ArrayList[MAX_EDGE_VAL + 1];
             for (int i = 0; i <= MAX_EDGE_VAL; i++) {
                 graph[i] = new ArrayList();
@@ -25,7 +27,8 @@ public class RedundantConnection684 {
             }
             throw new AssertionError();
         }
-        public boolean dfs(ArrayList<Integer>[] graph, int source, int target) {
+
+    public boolean dfs(ArrayList<Integer>[] graph, int source, int target) {
             if (!seen.contains(source)) {
                 seen.add(source);
                 if (source == target) return true;
@@ -74,7 +77,7 @@ public class RedundantConnection684 {
         return false;
     }
 
-    // disjoint set union
+    // disjoint set union O(n)
     public int[] findRedundantConnection3(int[][] edges) {
         int[] parent = new int[1001];
         int[] rank = new int[1001];
