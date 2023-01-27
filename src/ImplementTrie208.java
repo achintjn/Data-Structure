@@ -74,8 +74,10 @@ public class ImplementTrie208 {
 
 public static void main(String[] args) {
     Trie trie_main = new Trie();
-    trie_main.insert("apple");
-    boolean param_2 = trie_main.search("apple");
+    trie_main.insert("bad");
+    trie_main.insert("dad");
+    trie_main.insert("mad");
+    boolean param_2 = trie_main.search(".ad");
     System.out.println(param_2);
 }
 }
