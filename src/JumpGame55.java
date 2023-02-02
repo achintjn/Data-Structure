@@ -75,6 +75,8 @@ public class JumpGame55 {
         return (arr[0]==1)?true:false;
     }
 
+
+
     public static void main(String[] args) {
         System.out.println(canJump3(new int[]{2,0,0}));
     }
