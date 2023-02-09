@@ -74,8 +74,6 @@ public class LongestSubstringWithoutRepeatingChar3 {
         int right = 0;
         char[] chr = s.toCharArray();
 
-
-
         Map<Character, Integer> map = new HashMap<>();
         int max = 0;
 
