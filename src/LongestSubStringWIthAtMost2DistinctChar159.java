@@ -3,7 +3,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LongestSubStringWIthAtMost2DistinctChar159 {
-    public int lengthOfLongestSubstringTwoDistinct(String s) {
+    public static int lengthOfLongestSubstringTwoDistinct(String s) {
         int left = 0;
         //int right =2;
         int max = 1;
@@ -22,5 +22,9 @@ public class LongestSubStringWIthAtMost2DistinctChar159 {
             max = Math.max(max, i-left+1);
         }
         return max;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(lengthOfLongestSubstringTwoDistinct("eceba"));
     }
 }
