@@ -18,7 +18,7 @@ public class LongestRepeatingCharacterReplacement424 {
     }
 
     public static void main(String[] args) {
-        String s = "AABABBA";
+        String s = "AABABBAS";
 
         System.out.println(characterReplacement(s,1));
 
