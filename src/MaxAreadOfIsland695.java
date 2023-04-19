@@ -73,6 +73,36 @@ public class MaxAreadOfIsland695 {
         return area;
     }
 
+    //simple dfs
+    class Solution {
+        int a;
+        public int maxAreaOfIsland(int[][] grid) {
+            int area = 0;
+            for(int r=0;r<grid.length;r++){
+                for(int c=0;c<grid[0].length;c++){
+                    if(grid[r][c]==1){
+                        a=0;
+                        dfs(r,c,grid);
+                        area = Math.max(a,area);
+                    }
+                }
+            }
+            return area;
+        }
+
+        public void dfs(int r, int c, int[][] grid){
+            if(r<0 || c<0 || r>grid.length-1 || c>grid[0].length-1 || grid[r][c]!=1)
+                return;
+            a=a+1;
+            grid[r][c]=-1;
+
+            dfs(r-1,c,grid);
+            dfs(r,c-1,grid);
+            dfs(r+1,c,grid);
+            dfs(r,c+1,grid);
+        }
+    }
+
     public static void main(String[] args) {
 
         //int[][] image = {{0,0,0},{0,0,0}};
