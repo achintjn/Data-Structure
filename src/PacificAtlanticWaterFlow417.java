@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Queue;
 
 public class PacificAtlanticWaterFlow417 {
+    //bfs
     public static List<List<Integer>> pacificAtlantic(int[][] heights) {
         List<List<Integer>> list = new ArrayList<>();
         int[][] dp = new int[heights.length][heights[0].length];
@@ -54,6 +55,59 @@ public class PacificAtlanticWaterFlow417 {
                 dp[r1][c1]++;
                 que.add(new int[]{r1,c1});
             }
+        }
+    }
+
+    //dfs
+    class Solution {
+        public List<List<Integer>> pacificAtlantic(int[][] heights) {
+            List<List<Integer>> res= new ArrayList<>();
+            List<Integer> list = new ArrayList<>();
+            int row = heights.length;
+            int col = heights[0].length;
+            int[][] dp_pacific = new int[row][col];
+            int[][] dp_atlantic = new int[row][col];
+
+            for(int i=0;i<row;i++){
+                dfs(i,0,heights,dp_pacific,0);
+            }
+
+            for(int i=0;i<row;i++){
+                dfs(i,col-1,heights,dp_atlantic,0);
+            }
+
+            for(int i=0;i<col;i++){
+                dfs(0,i,heights,dp_pacific,0);
+            }
+
+            for(int i=0;i<col;i++){
+                dfs(row-1,i,heights,dp_atlantic,0);
+            }
+
+            for(int r=0;r<row;r++){
+                for(int c=0;c<col;c++){
+                    if(dp_atlantic[r][c]==dp_pacific[r][c] && dp_pacific[r][c]!=0){
+                        list.clear();
+                        list.add(r);
+                        list.add(c);
+                        res.add(new ArrayList<>(list));
+                    }
+                }
+            }
+
+            return res;
+        }
+
+        public void dfs(int r, int c, int[][]heights,int[][] dp, int prev){
+            if(r<0 || c<0 || r>heights.length-1 || c>heights[0].length-1 || dp[r][c]!=0 || heights[r][c]<prev)
+                return;
+            dp[r][c]++;
+
+
+            dfs(r-1,c,heights,dp,heights[r][c]);
+            dfs(r,c-1,heights,dp,heights[r][c]);
+            dfs(r+1,c,heights,dp,heights[r][c]);
+            dfs(r,c+1,heights,dp,heights[r][c]);
         }
     }
 
