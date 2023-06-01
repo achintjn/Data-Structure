@@ -35,6 +35,38 @@ public class TopKFrequentElements {
         return result;
     }
 
+    public int[] topKFrequentMay31(int[] nums, int k) {
+        ArrayList<Integer>[] arr = new ArrayList[nums.length+1];
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for(int a:nums){
+            int cnt = map.getOrDefault(a,0);
+            cnt++;
+            map.put(a,cnt);
+        }
+
+        for(Map.Entry<Integer, Integer> entry:map.entrySet()){
+            if(arr[entry.getValue()]==null)
+                arr[entry.getValue()] = new ArrayList<>();
+            arr[entry.getValue()].add(entry.getKey());
+        }
+
+        int[] res= new int[k];
+        int j=0;
+        for(int i=nums.length;i>=0;i--){
+            if(arr[i]!=null){
+                for(int a:arr[i]){
+                    if(j<k){
+                        res[j] = a;
+                        j++;
+                    }
+                }
+            }
+        }
+
+        return res;
+    }
+
     public static void main(String[] args) {
         System.out.println(topKFrequent(new int[]{1,1,1,2,2,3},2));
     }
