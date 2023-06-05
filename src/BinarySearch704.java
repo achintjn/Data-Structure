@@ -36,10 +36,25 @@ public class BinarySearch704 {
             else
                 last = mid-1;
         }
+        return -1;
+    }
+
+    public int search3(int[] nums, int target) {
+
+        int start = 0;
+        int end = nums.length-1;
+
+        while(start<=end){
+            int i = start+(end-start)/2;
+            if(nums[i]==target)
+                return i;
+            else if(nums[i]>target)
+                end = i-1;
+            else
+                start = i+1;
+        }
 
         return -1;
-
-
     }
 
     public static void main(String[] args) {
