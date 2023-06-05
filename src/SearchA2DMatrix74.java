@@ -98,6 +98,27 @@ public class SearchA2DMatrix74 {
         }
         return false;
     }
+
+    //my solution from June 5 2023
+    public boolean searchMatrix2023(int[][] matrix, int target) {
+        int r = matrix.length;
+        int c = matrix[0].length;
+        int start = 0;
+        int end = (r*c)-1;
+
+        while(start<=end){
+            int i = start + (end-start)/2;
+            int r1 = i/c;
+            int c1 = (i%c) ;
+            if(matrix[r1][c1]==target)
+                return true;
+            if(matrix[r1][c1]>target)
+                end = i-1;
+            else
+                start = i+1;
+        }
+        return false;
+    }
     public static void main(String[] args) {
         int[][] mat = new int[][]{{1,1}};
         System.out.println(searchMatrix2(mat,2));
