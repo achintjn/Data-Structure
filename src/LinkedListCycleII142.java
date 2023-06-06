@@ -14,7 +14,7 @@ public class LinkedListCycleII142 {
 
             if(slow==fast)
             {
-                //It is a simple math. If you are going full circle you will meet when hare completes two rounds and tortoise complete one round.
+                //It is a simple Math. If you are going full circle you will meet when hare completes two rounds and tortoise complete one round.
                 slow=head;
                 while(slow!=fast){
                     slow=slow.next;
