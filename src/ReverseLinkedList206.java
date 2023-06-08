@@ -39,6 +39,32 @@ public class ReverseLinkedList206 {
         return third.next;
     }
 
+    //recusrion and iteration
+    public ListNode reverseList3(ListNode head) {
+//         if(head==null)
+//             return null;
+//         ListNode second = head;
+//         //temp.next = head;
+//         ListNode move = head.next;
+//         second.next = null;
+
+//         while(move!=null){
+//             ListNode temp = move.next;
+//             move.next = second;
+//             second = move;
+//             move = temp;
+//         }
+//         return second;
+        if(head==null || head.next==null)
+            return head;
+        ListNode list = reverseList(head.next);
+        head.next.next = head;
+        head.next = null;
+        return list;
+
+
+    }
+
     public static void main(String[] args) {
 
         ListNode node1 = new ListNode(5,null);
