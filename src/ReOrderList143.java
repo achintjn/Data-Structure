@@ -32,4 +32,43 @@ public class ReOrderList143 {
             slow=tempf;
         }
     }
+
+    public void reorderList2(ListNode head) {
+        if(head.next==null || head.next.next==null)
+            return;
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while(fast!=null && fast.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        ListNode temp = slow;
+        slow = slow.next;
+        temp.next = null;
+
+        temp = slow.next;
+        slow.next = null;
+        while(temp!=null){
+            ListNode temp1 = temp.next;
+            temp.next = slow;
+            slow = temp;
+            temp = temp1;
+        }
+
+        fast = head;
+
+        while(slow!=null){
+            ListNode t1 = fast.next;
+            fast.next = slow;
+            fast = fast.next;
+            slow = slow.next;
+            fast.next = t1;
+            fast= fast.next;
+        }
+
+
+
+    }
 }
