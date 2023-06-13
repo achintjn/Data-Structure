@@ -8,38 +8,6 @@
 
 public class RemoveNthNodefromLL19 {
 
-    /*public static ListNode removeNthFromEnd(ListNode head, int n) {
-
-        if(head.next == null || head == null)
-            return null;
-
-        ListNode head2 = head;
-
-        int count = 1;
-
-        while(head2.next!=null){
-            head2 = head2.next;
-            count++;
-        }
-
-        head2 = head;
-
-        while(count - n -1 >0){
-            head2 = head2.next;
-            count--;
-        }
-
-        if(head2 == head && count==-1){
-            head = head.next;
-        }
-        else
-            head2.next = head2.next.next;
-
-        return head;
-
-
-    }*/
-
     public static ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode fast = head;
         ListNode slow = head;
