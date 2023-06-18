@@ -55,4 +55,31 @@ public class CloneGraph133 {
         }
         return map.get(node);
     }
+
+    //BFS revision
+    public GraphNode cloneGraph3(GraphNode node) {
+        if(node==null)
+            return null;
+        Map<GraphNode, GraphNode> map = new HashMap<>();
+        GraphNode res = new GraphNode(node.val);
+        map.put(node, res);
+
+        Queue<GraphNode> que = new LinkedList<>();
+        que.add(node);
+        while(!que.isEmpty()){
+            GraphNode curr = que.poll();
+            GraphNode copy = map.get(curr);
+
+            List<GraphNode> list = curr.neighbors;
+            for(GraphNode nei:list){
+                if(!map.containsKey(nei)){
+                    map.put(nei, new GraphNode(nei.val));
+                    que.add(nei);
+                }
+                List<GraphNode> copy_list = copy.neighbors;
+                copy_list.add(map.get(nei));
+            }
+        }
+        return res;
+    }
 }
