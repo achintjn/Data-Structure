@@ -21,4 +21,27 @@ public class TrappingRainWater42 {
         }
         return trap;
     }
+
+    //DP
+    public int trapDP(int[] height) {
+        int size = height.length;
+        int[] left_max = new int[size];
+        int[] right_max = new int[size];
+        int max = 0;
+        for(int i=0;i<size;i++){
+            max =  Math.max(max,height[i]);
+            left_max[i] = max;
+        }
+        max = 0;
+        for(int i=size-1;i>=0;i--){
+            max =  Math.max(max,height[i]);
+            right_max[i] = max;
+        }
+        int trap = 0;
+        for(int i=0;i<size;i++){
+            trap = trap + (Math.min(left_max[i],right_max[i])-height[i]);
+        }
+
+        return trap;
+    }
 }
