@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -52,4 +53,55 @@ public class CourseSchedule207 {
 
         }
     }
+
+    ArrayList<Integer>[] adj;
+
+    //quickest because of no hashmaps.
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        adj = new ArrayList[numCourses];
+
+        for(int i=0;i<numCourses;i++){
+            adj[i] = new ArrayList<>();
+        }
+
+        for(int[] p:prerequisites){
+            adj[p[1]].add(p[0]);
+        }
+
+        int count=0;
+
+        int[] visited = new int[numCourses];
+        int[] seen = new int[numCourses];
+
+        for(int i=0;i<numCourses;i++){
+            if(visited[i]==0){
+                if(dfs(visited,i,seen))
+                    count++;
+                else
+                    break;
+            }
+            else
+                count++;
+        }
+
+        return count==numCourses;
+    }
+
+    public boolean dfs(int[] visited, int i,int[] seen){
+        if(seen[i]!=0)
+            return false;
+        if(visited[i]!=0)
+            return true;
+        seen[i]++;
+        visited[i]++;
+        for(int a:adj[i]){
+            if(!dfs(visited,a,seen))
+                return false;
+        }
+        seen[i]--;
+        return true;
+    }
+
+
+
 }
