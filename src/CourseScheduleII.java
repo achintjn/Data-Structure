@@ -42,4 +42,41 @@ public class CourseScheduleII {
             return new int[0];
         }
     }
+
+
+    //faster soln
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
+        ArrayList<Integer>[] adj = new ArrayList[numCourses];
+        int[] indegree = new int[numCourses];
+
+        for(int[] p:prerequisites){
+            if(adj[p[1]]==null)
+                adj[p[1]] = new ArrayList<>();
+            adj[p[1]].add(p[0]);
+            indegree[p[0]]++;
+        }
+
+        int[] res = new int[numCourses];
+
+        Queue<Integer> que = new LinkedList<>();
+        for(int i=0;i<numCourses;i++){
+            if(indegree[i]==0)
+                que.add(i);
+        }
+        int j=0;
+        while(!que.isEmpty()){
+            int a = que.poll();
+            res[j] =a;
+            j++;
+            if(adj[a]!=null){
+                for(int i:adj[a]){
+                    indegree[i]--;
+                    if(indegree[i]==0)
+                        que.add(i);
+                }
+            }
+        }
+
+        return j==numCourses?res:new int[0];
+    }
 }
