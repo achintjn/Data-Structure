@@ -95,6 +95,7 @@ public class LambdaExercise {
         employeeList.add(new Employee(277, "Anuj Chettiar", 31, "Male", "Product Development", 2012, 35700.0));
 
 
+
         employeeList.stream()
                 .sorted(Comparator.comparing(Employee::getSalary)
                         .thenComparing((ea,eb)->eb.getAge()-ea.getAge()))
