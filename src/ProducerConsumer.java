@@ -19,16 +19,17 @@ class Producer implements Runnable{
                     }
                 }
 
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+
                 Random ran =new Random();
                 int a = ran.nextInt();
                 System.out.println("Producing "+ a+" in queue");
                 queue.add(a);
                 queue.notify();
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
